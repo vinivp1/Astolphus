@@ -1,6 +1,6 @@
 class Item{
-  String title;
-  bool done;
+  late String title;
+  late bool done;
 
   Item({required this.title, required this.done});
 

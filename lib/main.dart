@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models/item.dart';
+import 'package:astolphus/pages/login_page.dart';
 
 void main() {
   runApp(const App());
@@ -14,37 +14,10 @@ class App extends StatelessWidget {
       title: 'Astolphus',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        scaffoldBackgroundColor: Colors.white,
+        primarySwatch: Colors.purple,  
         useMaterial3: true,
       ),
-      home: const HomePage(), 
+      home: const LoginPage(), 
     );
   }
 }
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-  
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final List<Item> items = [];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Astolphus'),
-        backgroundColor: Colors.purple,
-      ),
-      body: const Center(
-        child: 
-          Text('Página inicial'),
-      ),
-    );
-  }
-}
-
