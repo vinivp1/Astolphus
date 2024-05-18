@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:astolphus/pages/login_page.dart';
+import 'package:astolphus/login/login_page.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const App());
@@ -10,7 +11,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Astolphus',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
