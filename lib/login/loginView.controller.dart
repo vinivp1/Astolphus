@@ -1,38 +1,49 @@
 import 'package:astolphus/home/home.page.dart';
+import 'package:astolphus/login/user.repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../models/user.model.dart';
+import '../models/password.model.dart';
 
 
 class LoginController extends GetxController {
+  UserRepository repository = UserRepository();
+  PasswordRepository rep = PasswordRepository();
+
+  Future<List<User>> userList() async => await repository .getUserList();
+  Future<List<Password>> passwordList() async => await rep .getPasswordList();
+
   TextEditingController emailInput = TextEditingController();
   TextEditingController passwordInput = TextEditingController();
-  static const email = 'admin@admin.com';
-  static const password = 'admin';
 
-  void tryTologin() {
-    switch (emailInput.text) {
-      case email:
-        checkPassword();
-        break;
-      case '':
-        printError('Insira um email');
-        break;
-      default:  
-        printError('Este email não está cadastrado');
-    } 
+  User newUser = User();
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    userList().then((users) {
+      passwordList().then((passwords) {
+        for (int i = 0; i < users.length; i++) {
+          if (emailInput.text == users[i].email) {
+            checkPassword(i, passwords);
+            break;
+          }
+        }
+      }).catchError((error) {
+        printError(error.toString());
+      });
+    }).catchError((error) {
+      printError(error.toString());
+    });
   }
 
-  void checkPassword() {
-    switch (passwordInput.text) {
-      case password:
-        login();
-        break;
-      case '':
-        printError('Insira uma senha');
-        break;
-      default:
-        printError('Senha incorreta para o email cadastrado');
-    }  
+  void checkPassword(int i, List<Password> passwords) {
+    if(passwordInput.text == passwords[i].password){
+      login();
+    } else {
+      printError("Senha Incorreta");
+    }
   }
 
   void login() {
@@ -42,5 +53,4 @@ class LoginController extends GetxController {
   void printError(String error) {
     print(error);
   }
-
 }

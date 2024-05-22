@@ -20,7 +20,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.purple,  
         useMaterial3: true,
       ),
-      home: const LoginView(), 
+      home: LoginView(),
     );
   }
 }

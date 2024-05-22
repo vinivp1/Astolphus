@@ -8,7 +8,8 @@ import 'package:get/get.dart';
 import 'loginView.controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+  final controller = Get.put(LoginController());
+  LoginView({super.key});
   
   @override
   Widget build(BuildContext context) {
