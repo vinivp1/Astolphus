@@ -2,7 +2,8 @@
 import 'package:astolphus/login/widgets/emailField.widgets.dart';
 import 'package:astolphus/login/widgets/loginButton.widget.dart';
 import 'package:astolphus/login/widgets/passwordField.widgets.dart';
-import 'package:astolphus/signup/signup.page.dart';
+import 'package:astolphus/login/widgets/signupButton.widgets.dart';
+import 'package:astolphus/signup/signup.view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'loginView.controller.dart';
@@ -35,8 +36,9 @@ class LoginView extends GetView<LoginController> {
           Divider(),
           PasswordField(),
           SizedBox(height:12),
-          Divider(),
           Loginbutton(),
+          SizedBox(height:12),
+          Signupbutton(),
         ],
       ),
     );

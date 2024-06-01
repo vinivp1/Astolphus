@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       title: 'Astolphus',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.purple,  
+        primarySwatch: Colors.purple,
         useMaterial3: true,
       ),
       home: LoginView(),

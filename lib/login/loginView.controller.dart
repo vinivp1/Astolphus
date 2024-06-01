@@ -1,56 +1,54 @@
-import 'package:astolphus/home/home.page.dart';
-import 'package:astolphus/login/user.repository.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../models/user.model.dart';
-import '../models/password.model.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:astolphus/home/home.page.dart';
 
 class LoginController extends GetxController {
-  UserRepository repository = UserRepository();
-  PasswordRepository rep = PasswordRepository();
 
-  Future<List<User>> userList() async => await repository .getUserList();
-  Future<List<Password>> passwordList() async => await rep .getPasswordList();
+  String _apiResponse = "";
 
   TextEditingController emailInput = TextEditingController();
   TextEditingController passwordInput = TextEditingController();
 
-  User newUser = User();
+  var isLoading = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
+    Future<void> _fetchData() async {
+      String apiUrl = 'https://flasktest-f17y.onrender.com/login?email=${emailInput.text}&senha=${passwordInput.text}';
 
-    userList().then((users) {
-      passwordList().then((passwords) {
-        for (int i = 0; i < users.length; i++) {
-          if (emailInput.text == users[i].email) {
-            checkPassword(i, passwords);
-            break;
-          }
+      try {
+        final response = await http.get(Uri.parse(apiUrl));
+
+        if (response.statusCode == 200) {
+            _apiResponse = json.decode(response.body).toString();
+        } else {
+            _apiResponse = "Failed to load data";
         }
-      }).catchError((error) {
-        printError(error.toString());
-      });
-    }).catchError((error) {
-      printError(error.toString());
-    });
-  }
+      } catch (e) {
+          _apiResponse = "Error: $e";
+      }
+    }
 
-  void checkPassword(int i, List<Password> passwords) {
-    if(passwordInput.text == passwords[i].password){
-      login();
+  Future<void> login() async {
+    isLoading.value = true;
+    await _fetchData();
+    isLoading.value = false;
+
+    if (_apiResponse == 'Success') {
+      Get.to(HomeView());
+
     } else {
-      printError("Senha Incorreta");
+      printError('Login failed');
     }
   }
 
-  void login() {
-    Get.to(HomeView());
-  }
-
   void printError(String error) {
-    print(error);
+    Get.snackbar(
+        "Error",
+        error,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
-}

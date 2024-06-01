@@ -9,9 +9,9 @@ class Loginbutton extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        controller.onInit();
+        controller.isLoading.value ? null : controller.login;
       },
-      child: const Text("Entrar")
+      child: controller.isLoading.value ? const CircularProgressIndicator() : Text('Entrar'),
       );
   }
 }
