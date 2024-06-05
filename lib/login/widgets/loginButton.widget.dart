@@ -7,11 +7,11 @@ class Loginbutton extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        controller.isLoading.value ? null : controller.login;
-      },
-      child: controller.isLoading.value ? const CircularProgressIndicator() : Text('Entrar'),
-      );
+    return Obx(() => ElevatedButton(
+      onPressed: controller.isLoading.value ? null : controller.login,
+      child: controller.isLoading.value
+          ? const CircularProgressIndicator(color: Colors.white)
+          : const Text('Entrar'),
+    ));
   }
 }

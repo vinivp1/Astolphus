@@ -20,7 +20,8 @@ class LoginController extends GetxController {
         final response = await http.get(Uri.parse(apiUrl));
 
         if (response.statusCode == 200) {
-            _apiResponse = json.decode(response.body).toString();
+            Map<String, dynamic> responseBody = json.decode(response.body);
+            _apiResponse = responseBody['status'].toString();
         } else {
             _apiResponse = "Failed to load data";
         }
@@ -35,8 +36,7 @@ class LoginController extends GetxController {
     isLoading.value = false;
 
     if (_apiResponse == 'Success') {
-      Get.to(HomeView());
-
+      Get.to(() => HomePage());
     } else {
       printError('Login failed');
     }

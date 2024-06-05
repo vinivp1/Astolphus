@@ -9,31 +9,58 @@ class SignupController extends GetxController {
   TextEditingController emailInputSignup = TextEditingController();
   TextEditingController passwordInputSignup = TextEditingController();
   TextEditingController rangeInputSignup = TextEditingController();
-  TextEditingController notifiInputSignup = TextEditingController();
+  var notifiInputSignup = ''.obs;
+
+  var isLoading = false.obs;
 
   Future<void> registerUser() async {
+    isLoading.value = true;
     try {
       final response = await http.post(
-        Uri.parse('https:flasktest-f17y.onrender.com/cadastro'),
+        Uri.parse('https://flasktest-f17y.onrender.com/cadastro'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
           'nome': nameInputSignup.text,
-          'Email': emailInputSignup.text,
+          'email': emailInputSignup.text,
           'senha': passwordInputSignup.text,
-          'Raio': rangeInputSignup.text,
-          'Notifica': notifiInputSignup.text,
+          'raio': rangeInputSignup.text,
+          'notifica': notifiInputSignup.value,
         }),
       );
 
+      isLoading.value = false;
+
       if (response.statusCode == 201) {
         print('User registered successfully');
+        Get.snackbar(
+          "Success",
+          "User registered successfully",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
       } else {
         print('Failed to register user: ${response.statusCode}');
+        Get.snackbar(
+          "Error",
+          "Failed to register user: ${response.statusCode}",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
       }
     } catch (e) {
+      isLoading.value = false;
       print('Failed to register user: $e');
+      Get.snackbar(
+        "Error",
+        "Failed to register user: $e",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
     }
   }
 }
