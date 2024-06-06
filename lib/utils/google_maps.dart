@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 
 class GoogleMaps extends StatefulWidget {
   const GoogleMaps({Key? key}) : super(key: key);
@@ -18,22 +18,21 @@ class _GoogleMapsState extends State<GoogleMaps> {
   Widget build(BuildContext context) {
     return FlutterMap(
       options: MapOptions(
-        center: initialCenter,
-        zoom: initialZoom,
+        initialCenter: initialCenter,
+        initialZoom: initialZoom,
       ),
       children: [
         TileLayer(
           urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
           userAgentPackageName: 'com.example.app',
-          subdomains: ['a', 'b', 'c'],
         ),
-        MarkerLayer(
+        const MarkerLayer(
           markers: [
             Marker(
-              point: initialCenter,
+              point: LatLng(-15.798718546848825, -47.86074744233732),
               width: 80,
               height: 80,
-              builder: (ctx) => const Icon(
+              child: Icon(
                 Icons.pets,
                 size: 40.0,
                 color: Color.fromRGBO(105, 37, 190, 1),

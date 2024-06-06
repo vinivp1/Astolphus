@@ -1,9 +1,7 @@
-// import 'package:astolphus/home/home_page.dart';
 import 'package:astolphus/login/widgets/emailField.widgets.dart';
 import 'package:astolphus/login/widgets/loginButton.widget.dart';
 import 'package:astolphus/login/widgets/passwordField.widgets.dart';
 import 'package:astolphus/login/widgets/signupButton.widgets.dart';
-import 'package:astolphus/signup/signup.view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'loginView.controller.dart';
@@ -11,7 +9,7 @@ import 'loginView.controller.dart';
 class LoginView extends GetView<LoginController> {
   final controller = Get.put(LoginController());
   LoginView({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
