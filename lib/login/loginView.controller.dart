@@ -7,6 +7,7 @@ import 'package:astolphus/home/home.page.dart';
 class LoginController extends GetxController {
 
   String _apiResponse = "";
+  String IDdono = "";
 
   TextEditingController emailInput = TextEditingController();
   TextEditingController passwordInput = TextEditingController();
@@ -21,6 +22,8 @@ class LoginController extends GetxController {
 
         if (response.statusCode == 200) {
             Map<String, dynamic> responseBody = json.decode(response.body);
+            GlobalVariables().IDdono = responseBody['IDdono'].toString();
+            print(IDdono);
             _apiResponse = responseBody['status'].toString();
         } else {
             _apiResponse = "Failed to load data";
@@ -52,3 +55,15 @@ class LoginController extends GetxController {
       );
     }
   }
+
+class GlobalVariables {
+  static final GlobalVariables _instance = GlobalVariables._internal();
+
+  String IDdono = '';
+
+  factory GlobalVariables() {
+    return _instance;
+  }
+
+  GlobalVariables._internal();
+}

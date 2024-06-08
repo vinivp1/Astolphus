@@ -4,6 +4,7 @@ import 'package:astolphus/config/config.dart';
 import 'package:astolphus/notifications/notifications.dart';
 import 'package:astolphus/profile/profile.dart';
 import 'package:astolphus/utils/google_maps.dart';
+import 'package:astolphus/historico/routes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -124,6 +125,19 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) => const Configuration()));
                   },
                 ),
+                ListTile(
+                  leading: const Icon(Icons.history,
+                      color: Color.fromRGBO(105, 37, 190, 1)),
+                  title: const Text('Histórico'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) => MapScreen(idPet: '1', data: '07-06-2024')
+                        )
+                    );
+                  }
+                )
               ],
             ),
           ),

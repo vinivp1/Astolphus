@@ -29,7 +29,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
         const MarkerLayer(
           markers: [
             Marker(
-              point: LatLng(-15.798718546848825, -47.86074744233732),
+              point: LatLng(-23.499954, -47.398504),
               width: 80,
               height: 80,
               child: Icon(

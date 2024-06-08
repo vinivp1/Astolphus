@@ -2,7 +2,7 @@
   import 'package:flutter/material.dart';
   import 'package:http/http.dart' as http;
   import 'package:flutter/services.dart';
-  import 'package:astolphus/utils/global.controller.dart';
+  // import 'package:astolphus/utils/global.controller.dart';
 
   class AddPet extends StatefulWidget {
     const AddPet({super.key});
@@ -17,7 +17,7 @@
     final TextEditingController _petNameController = TextEditingController();
     final TextEditingController _petRangeController = TextEditingController();
     String _selectedPetType = 'Cachorro'; // Valor padrão do dropdown
-    String ownerId = GlobalController.instance.getOwnerId();
+    // String ownerId = GlobalController.instance.getOwnerId();
 
     Future<void> sendDataToAPI() async {
       try {
@@ -30,7 +30,7 @@
             'Nome_pet': _petNameController.text,
             'Raio_seguranca': _petRangeController.text,
             'Animal': _selectedPetType,
-            'idDono': ownerId,
+            // 'idDono': ownerId,
           }),
         );
 

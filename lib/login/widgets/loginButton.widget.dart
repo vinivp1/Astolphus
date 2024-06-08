@@ -12,6 +12,9 @@ class Loginbutton extends GetView<LoginController> {
       child: controller.isLoading.value
           ? const CircularProgressIndicator(color: Colors.white)
           : const Text('Entrar'),
+
+
+
     ));
   }
 }

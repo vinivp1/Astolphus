@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:astolphus/login/loginView.controller.dart';
 
 class GlobalController extends GetxController {
   static GlobalController instance = Get.find();
