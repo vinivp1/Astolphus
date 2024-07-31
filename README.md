@@ -1,16 +1,8 @@
-# astolphus
+# ASTOLPHUS
 
-A new Flutter project.
+A Flutter app for a college project. This app focuses on getting your pet's collar data with our LoRa to show on the map display where your pet is and keep your pet safe as the app will notify you if your pet is leaving its safe zone.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#Project app Creators:
+Vinicius (me) - https://www.linkedin.com/in/viniciusvalentimpereira/
+Isabella Cirino - https://www.linkedin.com/in/isabella-oliveira-cirino-4b114a216/
+Luana Matiello - https://www.linkedin.com/in/luana-matiello-66975b2b4/
